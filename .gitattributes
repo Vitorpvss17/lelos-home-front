@@ -1,0 +1,4 @@
+# Normaliza finais de linha (LF no repositório para texto).
+* text=auto
+*.sh text eol=lf
+*.cmd text eol=crlf

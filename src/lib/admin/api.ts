@@ -89,6 +89,9 @@ export async function adminLogin(email: string, password: string): Promise<Login
   return (await res.json()) as LoginResponse;
 }
 
+export const adminLogout = () =>
+  request<void>("/api/admin/auth/logout", { method: "POST" });
+
 // ── Categorias ───────────────────────────────────────────────────────
 export const listCategories = () => request<AdminCategory[]>("/api/admin/categories");
 export const createCategory = (body: CategoryReq) =>

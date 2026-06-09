@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { tokenStore } from "./token-store";
-import { adminLogin } from "./api";
+import { adminLogin, adminLogout } from "./api";
 
 /**
  * Estado de autenticação do admin, baseado em localStorage.
@@ -24,6 +24,9 @@ export function useAdminAuth() {
   }, []);
 
   const logout = useCallback(() => {
+    // best-effort: revoga a sessão no servidor (usa o token atual) e limpa local.
+    // adminLogout() lê o token de forma síncrona antes do clear abaixo.
+    void adminLogout().catch(() => {});
     tokenStore.clear();
   }, []);
 
